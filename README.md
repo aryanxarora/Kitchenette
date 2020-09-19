@@ -1,1 +1,1 @@
-# mp2-3
+# Kitchenette
