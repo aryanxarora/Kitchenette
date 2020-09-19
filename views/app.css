@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+html {
+    zoom: 80%;
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
