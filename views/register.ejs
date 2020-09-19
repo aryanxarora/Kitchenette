@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kitchenette</title>
     <link rel="icon" href="https://image.flaticon.com/icons/svg/1868/1868669.svg">
-    <link rel="stylesheet" href="account.css">
+    <link rel="stylesheet" href="/css/account.css">
 </head>
 <body>
 
@@ -36,7 +36,8 @@
                 <form  method="POST" action="register">
                     <input type="email" placeholder="Email" class="createAccount_input" name="email">
                     <input type="password" placeholder="Password" class="createAccount_input" name="password">
-                    <input type="submit" class="createAccount_button" value="register">
+                    <input type="submit" class="createAccount_button" value="register" id="signUpBtn">
+                    <p id="msg1" class="text-danger text-center"></p>
                 </form>
             </div>
         </div>

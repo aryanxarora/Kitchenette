@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const ObjectId = Schema.Types.ObjectId;
 
 const databaseURL = 'mongodb+srv://admin:admin@cluster0.aavph.mongodb.net/kitchenette?retryWrites=true&w=majority'
 
@@ -11,9 +12,10 @@ const options = {
 
 mongoose.connect(databaseURL, options);
 
-var userSchema = new Schema({
-    userEmail: {type: String, required: true},
-    userPassword: {type: String, required: true},
+var ingredientSchema = new Schema({
+    userRef: {type: ObjectId, ref: 'user' ,required: true},
+    ingredientName: {type: String, required: true},
+    isAvailable: {type: Boolean, required: true}
 });
 
-module.exports = mongoose.model('user', userSchema);
+module.exports = mongoose.model('ingredient', ingredientSchema);

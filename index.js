@@ -1,10 +1,12 @@
 // * EXPRESS APP
 const express = require('express');
 const app = express();
-app.use(express.static(__dirname+'/views'));
+var path = require('path');
+app.use(express.static(path.join(__dirname, 'public')));
+var fileUpload = require('express-fileupload');
 
 // * VIEW ENGINE
-app.set('view engine', 'ejs')
+app.set('view engine', 'ejs');
 
 // * EXPRESS SESSIONS
 const session = require('express-session')
@@ -27,6 +29,12 @@ const bodyparser = require("body-parser")
 const urlencoder = bodyparser.urlencoded({
     extended: false
 })
+
+// * MONGODB - MONGOOSE
+const mongoose = require('mongoose');
+const userModel = require('./models/user');
+const recipeModel = require('./models/recipe');
+const ingredientModel = require('./models/ingredient');
 
 const name = 'Aryan Arora'
 const recipes = [
@@ -60,7 +68,7 @@ app.listen(3000, () => {
 
 app.get('/', (req, res) => {
     if(req.session.loggedIn == true){
-        res.render('app', {name: req.session.username, recipes, ingredients})
+        res.render('app', {name: req.session.userEmail, recipes, ingredients})
     } else {
         res.render('index')
     }
@@ -86,18 +94,47 @@ app.post('/login', urlencoder, function (req, res){
 })
 
 app.post('/register', urlencoder, function (req, res){
-    var user_email = req.body.email;
-    var user_password = req.body.password;
 
-    if(user_email && user_password){
-        req.session.username = user_email;
-        req.session.loggedIn = true;
-        res.redirect('/')
-    } else {
-        console.log("INCOMPLETE DETIALS")
-        res.redirect('/register')
-    }
-})
+    var newUser = new userModel({
+        userEmail: req.body.email,
+        userPassword: req.body.password,
+    })
+
+    // if(userEmail && userPassword){
+    //     req.session.userEmail = userEmail;
+    //     req.session.loggedIn = true;
+    //     res.redirect('/')
+    // } else {
+    //     console.log("INCOMPLETE DETIALS")
+    //     res.redirect('/register')
+    // }
+
+    userModel.findOne({userEmail: newUser.userEmail}, function (err1, userQuery){
+        if (err1) {
+			console.log(err1.errors);
+	    	result = { success: false, message: "ERR: DB validation" }
+	    	res.send(result);
+		}
+		if (userQuery){
+			console.log('ERR: User found');
+			result = { success: false, message: "User already exists! Please sign in!" }
+	    	res.send(result);
+		} else{
+			newUser.save(function(err2, user) {
+				if (err2) {
+					console.log(err2.errors);
+	    			result = { success: false, message: "User was not registered!" }
+	    			res.send(result);
+				} else {
+                    console.log("Successfully registered user!");
+	    			console.log(user);
+	    			result = { success: true, message: "User has succesfully registered!" }
+	    			res.send(result);
+				}
+			});
+		}
+    });
+});
 
 app.get('/app', (req, res) => {
     res.render('app', {name, recipes, ingredients})
