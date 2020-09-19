@@ -1,0 +1,117 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.landing__jumbotron {
+    height: 60vh;
+    width: 100%;
+    background-color: #9EC1A6;
+    color: white;
+    position: relative;
+    display: grid;
+    place-items: center;
+}
+
+.landing__jumbotron__flex {
+    display: flex;
+    position: absolute;
+    margin: 80px;
+    height: 70%;
+    width: 90%;
+    align-items: center;
+}
+
+.landing__jumbotron__title {
+    width: 600px;
+}
+
+.landing__jumbotron__title > h1{
+    font-size: 60px;
+    font-weight: 400;
+}
+
+.landing__jumbotron__title > p {
+    font-size: 40px;
+    font-weight: 200;
+}
+
+.landing__jumbotron__button {
+    position: absolute;
+    right: 100px;
+    top: 40%;
+    text-decoration: none;
+    color: white;
+    width: 30%;
+    max-width: 300px;
+    height: 20%;
+    display: grid;
+    place-items: center;
+    letter-spacing: 1px;
+    font-weight: 500;
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+    background-color: #8AAA92;
+    transition: 0.3s ease;
+}
+
+.landing__jumbotron__button:hover{
+    transform: scale(1.1);
+}
+
+.landing__features__cards {
+    margin: 50px;
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.landing_features_card {
+    width: 30%;
+    height: 450px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0px 2px 30px rgba(0, 0, 0, 0.2);
+    display: grid;
+    place-items: center;
+    align-content: center;
+    text-align: center;
+    color: #707070;
+    margin-left: 50px;
+    margin-right: 50px;
+    transition: 0.5s ease;
+}
+
+.landing_features_card:hover{
+    transform: scale(1.1);
+}
+
+.landing_features_card > img {
+    width: 30%;
+}
+
+.landing__features__cardContent {
+    margin: 60px;
+    position: relative;
+    top: 20px;
+}
+
+.landing__features__cardContent > h1 {
+    font-weight: 500;
+    font-size: 25px;
+}
+
+.landing__features__cardContent > p {
+    position: relative;
+    top: 20px;
+    font-weight: 100;
+    font-size: 15px;
+}
+
+.landing__features {
+    margin-bottom: 150px;
+}
