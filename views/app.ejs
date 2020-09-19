@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="https://image.flaticon.com/icons/svg/1868/1868669.svg">
     <title>Kitchenette</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
     <link rel="stylesheet" href="/css/app.css">
     <script src="/js/app.js"></script>
 </head>
@@ -48,8 +52,8 @@
 
         <div class="app__body">
         
-            <div class="smartSuggestions" id="smartSuggestions">
-                <h1 class="offset">Smart Suggestions</h1>
+        <div class="smartSuggestions" id="smartSuggestions">
+            <h1 class="offset">Smart Suggestions</h1>
                 <div class="recipes__cards">
                     <ul>
                         <li><a href="#">
@@ -71,13 +75,60 @@
                     </ul>
                 </div>
             </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+                
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add a Recipe</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="addRecipe" method="POST">
+                            <div class="form-group">
+                              <label>Recipe Name</label>
+                              <input type="text" class="form-control" id="modal_recipeName" placeholder="Enter a name for your recipe">
+                            </div>
+                            <div class="form-group">
+                              <label>Tags</label>
+                              <input type="text" class="form-control" id="modal_recipeTag" placeholder="ex. 2hrs, Spicy, Mexican, Protein">
+                            </div>
+                            <div class="form-group">
+                              <label>Select Ingredients</label><br>
+                              <select class="selectpicker" multiple data-live-search="true"> 
+                                <option value="mustard">Mustard</option>
+                                <option value="ketchup">Ketchup</option>
+                                <option value="relish">Relish</option>
+                              </select>
+                            </div>
+                            <div class="form-group">
+                              <label>Notes</label>
+                              <textarea class="form-control" id="modal_recipeNotes" rows="10" placeholder="Add directions, notes and links!"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Add a photo</label>
+                                <input type="file" class="form-control-file" id="modal_recipePhoto">
+                            </div>
+                            <div class="form-footer">
+                                <br>
+                                <button type="submit" class="btn my-1 modal_submit" value="addRecipe">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                </div>
+            </div>
             
 
             <div class="recipes" id="recipes">
                 <h1 class="offset" >Recipes</h1>
                 <div class="recipes__cards">
                     <ul>
-                        <li><a href="#" onclick="addRecipe()">
+                        <li><a href="#myModal" data-toggle="modal" data-target="#myModal">
                             <div class="recipe__card grid__center">
                                 <div>
                                     <h3>+</h3>
@@ -140,5 +191,6 @@
     <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
     <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/public/js/app.js"></script>
 </body>
 </html>

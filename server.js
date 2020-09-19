@@ -88,6 +88,11 @@ app.get('/signOut', (req, res) => {
     res.redirect('/')
 })
 
+app.post('/addRecipe', (req, res) => {
+    select = req.body.recipeName;
+    console.log(select)
+})
+
 app.post('/login', urlencoder, function (req, res){
 
     var user = 
@@ -112,7 +117,7 @@ app.post('/login', urlencoder, function (req, res){
                 req.session.loggedIn = true;
                 req.session.userEmail = userQuery.userEmail;
                 // TODO: ADD RECIPES AND INGREDIENTS TO SESSION
-                res.render('app', {user: req.session.userEmail, recipes, ingredients});
+                res.redirect('/')
             } 
             else {
                 res.render('login', {error: "Incorrect password, please try again!"})
@@ -172,7 +177,11 @@ app.post('/register', urlencoder, function (req, res){
 
 app.get('/app', (req, res) => {
     // TODO : FETCH USER DATA, ADD TO SESSION, PASS TO APP
-    res.render('app', {user: req.session.userEmail, recipes, ingredients})
+    if(req.session.loggedIn){
+        res.render('app', {user: req.session.userEmail, recipes, ingredients})
+    } else {
+        res.redirect('/')
+    }
 })
 
 app.use((req, res) => {

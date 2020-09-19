@@ -254,3 +254,8 @@ ul {
     display: flex;
     flex-wrap: wrap;
 }
+
+.modal_submit{
+    color: white;
+    background-color: #819e88;
+}
