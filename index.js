@@ -44,11 +44,6 @@ const recipes = [
         rec_name: 'Shrimp Pasta',
         rec_tags: ['3HRS', 'SEAFOOD', 'PASTA'],
         rec_img: 'https://carlsbadcravings.com/wp-content/uploads/2020/01/Cajun-Shrimp-Pasta-v6.jpg'
-    },
-    {
-        rec_name: 'Shahi Paneer',
-        rec_tags: ['3HRS', 'INDIAN'],
-        rec_img: 'https://www.whiskaffair.com/wp-content/uploads/2019/05/Kadai-Paneer-1-3-500x500.jpg'
     }
 ]
 
