@@ -1,0 +1,37 @@
+CCAPDEV Machine Project 3: Kitchenette
+Made by: 
+Aryan Arora
+Carl Nicolas Bulaun
+
+Overview
+    Kitchenette is a web application designed for users to find and add recipes
+    that can be shared with other users of the application. The web app makes use 
+    of an account system which allows users to access the recipes found in the database.
+
+Features
+Register
+        Users can register an account which can allow them to access other features used 
+        in the web application such as adding and viewing recipes. To register, the user 
+        needs to input an email that is not yet present in the web apps database and a 
+        password. Upon confirmation of the creation of the account the users can login 
+        and access the other features of the application.
+Login 
+        Once an Account is registered, it can be used to login in order to login the user
+         needs to correctly input the email and password in order to successfully login.
+Log out
+	The user if logged in can also logout of their account.
+Recipes
+        Recipes displays the recipes that can be found in the database of the application. 
+        The recipes displayed will show a picture of the recipe's result, the recipe’s 
+        instructions, and related tags to the recipe. Upon selecting a recipe it will display
+         additional details such as the required ingredients to prepare the recipe, the time 
+         of preparation, and the instructions to follow in order to complete the recipe.
+Add Recipes
+	Recipes can be added by the user in which the following fields must be inputted by the
+    user in order to add the recipe to the database of the web application: The recipe name, 
+    Tags related to the recipe, all the required ingredients for the recipe, the directions 
+    and notes to follow the recipe and lastly a photo of the final result of the recipe. 
+    Once all the fields have been filled the user can then submit the recipe and it will be 
+    entered into the database for the user to view.
+Remove Recipes
+	Recipes that are added by the user can also be removed from the web apps database.
