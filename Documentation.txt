@@ -2,6 +2,7 @@ CCAPDEV Machine Project 3: Kitchenette
 Made by: 
 Aryan Arora
 Carl Nicolas Bulaun
+Link to application: https://kitchenette-app.herokuapp.com
 
 Overview
     Kitchenette is a web application designed for users to find and add recipes
