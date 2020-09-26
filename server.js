@@ -34,7 +34,6 @@ const urlencoder = bodyparser.urlencoded({
 const mongoose = require('mongoose');
 const userModel = require('./models/user');
 const recipeModel = require('./models/recipe');
-const ingredientModel = require('./models/ingredient');
 
 const recipes = [
     {
@@ -57,8 +56,13 @@ const recipes = [
 const ingredients = [
     {ing_name: 'Salt', ing_stock: false},
     {ing_name: 'Chicken', ing_stock: true},
-    {ing_name: 'Tortilla', ing_stock: true}
+    {ing_name: 'Tortilla', ing_stock: true},
+    {ing_name: 'Pepper', ing_stock: false}
 ]
+
+function fetchUserData(id){
+
+}
 
 
 app.listen(3000, () => {
@@ -88,9 +92,32 @@ app.get('/signOut', (req, res) => {
     res.redirect('/')
 })
 
-app.post('/addRecipe', (req, res) => {
-    select = req.body.recipeName;
-    console.log(select)
+app.post('/addRecipe', urlencoder, (req, res) => {
+
+    if(req.session.loggedIn == true){
+        var newRecipe = new recipeModel({
+            userRef: req.session.userRef,
+            recipeName: req.body.modal_recipeName,
+            recipeTag: req.body.modal_recipeTag.split(','),
+            recipeIngredients: req.body.modal_recipeIngredients,
+            recipeNotes: req.body.modal_recipeNotes,
+            recipePhoto: req.body.modal_recipePhoto
+        })
+    
+        newRecipe.save((err, user) => {
+            if(err) {
+                console.log(err);
+                alert('Recipe was not registered');
+            } else {
+                console.log("Successfully added recipe!");
+                console.log(user);
+                res.redirect('/');
+            }
+        })
+    } else {
+        res.redirect('/')
+    }
+
 })
 
 app.post('/login', urlencoder, function (req, res){
@@ -116,7 +143,9 @@ app.post('/login', urlencoder, function (req, res){
                 console.log("Login successful!");
                 req.session.loggedIn = true;
                 req.session.userEmail = userQuery.userEmail;
-                // TODO: ADD RECIPES AND INGREDIENTS TO SESSION
+                req.session.userRef = userQuery._id;
+                userData = fetchUserData(userQuery._id);
+                // TODO: ADD RECIPES TO SESSION
                 res.redirect('/')
             } 
             else {

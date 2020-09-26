@@ -42,3 +42,18 @@ $(document).ready(function () {
   $("#modal_recipeIngredients").CreateMultiCheckBox({ width: '230px',
              defaultText : 'Select Below', height:'250px' });
 });
+
+var count = 0
+function changeAvailability(){
+  //var property = document.getElementById('btn_isAvail');
+  var property = document.getElementsByClassName("ing__button");
+    if(count == 1){
+        property.style.backgroundColor = "white";
+        property.style.color = "rgba(0, 0, 0, 0.425)"
+        count = 0;
+    } else {
+        property.style.backgroundColor = "#9ec1a6c9";
+        property.style.color = "white"
+        count = 1;
+    }
+}

@@ -16,6 +16,9 @@
 <body>
 
     <nav>
+        <div class="applogo">
+            <h1>Kitchenette</h1>
+        </div>
         <div class="account__details">
             <div class="dropdown">
                 <button onclick="dropdown()" class="dropbtn"><%= user %></button>
@@ -27,54 +30,8 @@
     </nav>
 
     <div class="app__main">
-        <div class="sidebar">
-            <ul>
-                <li>
-                    <div class="sidebar__listItem" onclick="smart_suggestions()">
-                        <img src="https://image.flaticon.com/icons/svg/1868/1868669.svg" alt="">
-                        <h1>smart suggestions</h1>
-                    </div>
-                </li>
-                <li>
-                    <div class="sidebar__listItem" onclick="recipes()">
-                        <img src="https://image.flaticon.com/icons/svg/1830/1830878.svg" alt="">
-                        <h1>recipes</h1>
-                    </div>
-                </li>
-                <li>
-                    <div class="sidebar__listItem" onclick="ingredients()">
-                        <img src="https://image.flaticon.com/icons/svg/2909/2909841.svg" alt="">
-                        <h1>ingredients</h1>
-                    </div>
-                </li>
-            </ul>
-        </div>
 
         <div class="app__body">
-        
-        <div class="smartSuggestions" id="smartSuggestions">
-            <h1 class="offset">Smart Suggestions</h1>
-                <div class="recipes__cards">
-                    <ul>
-                        <li><a href="#">
-                            <div class="recipe__card">
-                                <div class="recipe__card__top">
-                                    <img src="https://www.cook2eatwell.com/wp-content/uploads/2019/02/Shredded-Chicken-Tacos-Image-2.jpg" alt="">
-                                </div>
-                                <div class="recipe__card__bottom">
-                                    <div class="recipe__card__bottom__content">
-                                        <h5>Chicken Tacos</h5>
-                                        <div class="spans">
-                                            <span>2HRS</span>
-                                            <span>PROTIEN</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a></li>
-                    </ul>
-                </div>
-            </div>
 
             <!-- Modal -->
             <div class="modal fade" id="myModal" role="dialog">
@@ -90,27 +47,23 @@
                         <form action="addRecipe" method="POST">
                             <div class="form-group">
                               <label>Recipe Name</label>
-                              <input type="text" class="form-control" id="modal_recipeName" placeholder="Enter a name for your recipe">
+                              <input type="text" class="form-control" id="modal_recipeName" placeholder="Enter a name for your recipe" name="modal_recipeName">
                             </div>
                             <div class="form-group">
                               <label>Tags</label>
-                              <input type="text" class="form-control" id="modal_recipeTag" placeholder="ex. 2hrs, Spicy, Mexican, Protein">
+                              <input type="text" class="form-control" id="modal_recipeTag" placeholder="ex. 2hrs,Spicy,Mexican,Protein" name="modal_recipeTag">
                             </div>
                             <div class="form-group">
                               <label>Select Ingredients</label><br>
-                              <select class="selectpicker" multiple data-live-search="true"> 
-                                <option value="mustard">Mustard</option>
-                                <option value="ketchup">Ketchup</option>
-                                <option value="relish">Relish</option>
-                              </select>
+                              <input type="text" class="form-control" id="modal_recipeIngredients" placeholder="ex. Salt,Pepper,Tomato,Chicken" name="modal_recipeIngredients">
                             </div>
                             <div class="form-group">
                               <label>Notes</label>
-                              <textarea class="form-control" id="modal_recipeNotes" rows="10" placeholder="Add directions, notes and links!"></textarea>
+                              <textarea class="form-control" id="modal_recipeNotes" rows="10" placeholder="Add directions, notes and links!" name="modal_recipeNotes"></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Add a photo</label>
-                                <input type="file" class="form-control-file" id="modal_recipePhoto">
+                                <input type="file" class="form-control-file" id="modal_recipePhoto" name="modal_recipePhoto">
                             </div>
                             <div class="form-footer">
                                 <br>
@@ -156,28 +109,6 @@
                                     </div>
                                 </a></li>
                             <% }) %> 
-                        <% } %> 
-                    </ul>
-                </div>
-            </div>
-
-            <div class="ingredients" id="ingredients">
-                <h1 class="offset">Ingredients</h1>
-                <div class="ingredients_div">
-                    <ul>
-                        <li><a href="#">
-                            <div class="ing__button">
-                                <h3>+</h3>
-                            </div>
-                        </a></li>
-                        <% if (ingredients.length > 0 ) { %> 
-                            <% ingredients.forEach(ingredient => { %>
-                                <li><a href="#">
-                                    <div class="ing__button">
-                                        <h3><%= ingredient.ing_name %></h3>
-                                    </div>
-                                </a></li>
-                            <% }) %>  
                         <% } %> 
                     </ul>
                 </div>

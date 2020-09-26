@@ -16,7 +16,7 @@ var recipeSchema = new Schema({
     userRef: {type: ObjectId, ref: 'user', required: true},
     recipeName: {type: String, required: true},
     recipeTag: {type: Array},
-    recipeIngredients: {type: Array, required: true},
+    recipeIngredients: {type: String, required: true},
     recipeNotes: {type: String},
     recipePhoto: {type: String}
 });
