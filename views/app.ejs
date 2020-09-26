@@ -54,7 +54,7 @@
                               <input type="text" class="form-control" id="modal_recipeTag" placeholder="ex. 2hrs,Spicy,Mexican,Protein" name="modal_recipeTag">
                             </div>
                             <div class="form-group">
-                              <label>Select Ingredients</label><br>
+                              <label>Ingredients</label><br>
                               <input type="text" class="form-control" id="modal_recipeIngredients" placeholder="ex. Salt,Pepper,Tomato,Chicken" name="modal_recipeIngredients">
                             </div>
                             <div class="form-group">
@@ -63,7 +63,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Add a photo</label>
-                                <input type="file" class="form-control-file" id="modal_recipePhoto" name="modal_recipePhoto">
+                                <input type="text" class="form-control" id="modal_recipePhoto" placeholder="paste the url of image" name="modal_recipePhoto">
                             </div>
                             <div class="form-footer">
                                 <br>
@@ -91,18 +91,20 @@
                         </a></li>
                         <% if (recipes.length > 0) { %> 
                             <% recipes.forEach(recipe => { %> 
-                                <li><a href="#">
+                                <li>
                                     <div class="recipe__card">
                                         <div class="recipe__card__top">
-                                            <img src="<%= recipe.rec_img %>" alt="">
+                                            <a href="delete/<%= recipe._id %>"><img src="https://www.flaticon.com/svg/static/icons/svg/1828/1828843.svg" alt=""></a>
+                                            <img src="<%= recipe.recipePhoto %> " alt="">
                                         </div>
+                                        <a href="recipe/<%= recipe._id %> ">
                                         <div class="recipe__card__bottom">
                                             <div class="recipe__card__bottom__content">
-                                                <h5><%= recipe.rec_name %> </h5>
+                                                <h5><%= recipe.recipeName %> </h5>
                                                 <div class="spans">
-                                                    <% recipe.rec_tags.forEach(tag => { %> 
-                                                    <span><%= tag %> </span>
-                                                    <% }) %> 
+                                                    <% recipe.recipeTag.forEach(tag => { %> 
+                                                    <span><%= tag.toUpperCase() %> </span>
+                                                    <% }) %>
                                                 </div>
                                             </div>
                                         </div>

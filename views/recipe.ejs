@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= recipe.recipeName %> </title>
+    <link rel="stylesheet" href="/css/recipe.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="page">
+            <div class="top">
+                <img src="<%= recipe.recipePhoto %> " alt="">
+            </div>
+            <div class="bottom">
+                <h1><%= recipe.recipeName %> </h1>
+                <div class="spans">
+                    <% recipe.recipeTag.forEach(tag => { %> 
+                    <span><%= tag.toUpperCase() %> </span>
+                    <% }) %>
+                </div>
+                <div class="ingredients">
+                    <h3>Ingredients</h3>
+                    <p><%= recipe.recipeIngredients %> </p>
+                </div>
+                <div class="notes">
+                    <h3>Notes</h3>
+                    <div class="notearea">
+                        <div>
+                            <p><%= recipe.recipeNotes %> </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+</body>
+</html>

@@ -34,24 +34,9 @@ const urlencoder = bodyparser.urlencoded({
 const mongoose = require('mongoose');
 const userModel = require('./models/user');
 const recipeModel = require('./models/recipe');
+const { raw } = require('body-parser');
 
-const recipes = [
-    {
-        rec_name: 'Chicken Tacos', 
-        rec_tags: ['2HRS', 'PROTEIN'],
-        rec_img: 'https://www.cook2eatwell.com/wp-content/uploads/2019/02/Shredded-Chicken-Tacos-Image-2.jpg'
-    },
-    {
-        rec_name: 'Japanse Curry', 
-        rec_tags: ['1HRS', 'CARBS'], 
-        rec_img: 'https://www.justonecookbook.com/wp-content/uploads/2020/03/Japanese-Chicken-Curry-2417-I.jpg'
-    },
-    {
-        rec_name: 'Shrimp Pasta',
-        rec_tags: ['3HRS', 'SEAFOOD', 'PASTA'],
-        rec_img: 'https://carlsbadcravings.com/wp-content/uploads/2020/01/Cajun-Shrimp-Pasta-v6.jpg'
-    }
-]
+var recipes = []
 
 const ingredients = [
     {ing_name: 'Salt', ing_stock: false},
@@ -59,10 +44,6 @@ const ingredients = [
     {ing_name: 'Tortilla', ing_stock: true},
     {ing_name: 'Pepper', ing_stock: false}
 ]
-
-function fetchUserData(id){
-
-}
 
 
 app.listen(3000, () => {
@@ -92,6 +73,22 @@ app.get('/signOut', (req, res) => {
     res.redirect('/')
 })
 
+app.get('/getRecipes', (req, res) => {
+    if( req.session.loggedIn == true){
+        var recipeObject = [];
+        recipeModel.find({userRef: req.session.userRef}).exec(function (err, result){
+            result.forEach(function (document){
+                recipeObject.push(document.toObject());
+            });
+            console.log("Inside /getRecipes: ")
+            console.log(recipeObject)
+            recipes = recipeObject;
+            console.log(recipes);
+        })
+        res.redirect('/');
+    }
+})
+
 app.post('/addRecipe', urlencoder, (req, res) => {
 
     if(req.session.loggedIn == true){
@@ -111,7 +108,7 @@ app.post('/addRecipe', urlencoder, (req, res) => {
             } else {
                 console.log("Successfully added recipe!");
                 console.log(user);
-                res.redirect('/');
+                res.redirect('/getRecipes');
             }
         })
     } else {
@@ -144,9 +141,9 @@ app.post('/login', urlencoder, function (req, res){
                 req.session.loggedIn = true;
                 req.session.userEmail = userQuery.userEmail;
                 req.session.userRef = userQuery._id;
-                userData = fetchUserData(userQuery._id);
                 // TODO: ADD RECIPES TO SESSION
-                res.redirect('/')
+                console.log(userQuery);
+                res.redirect('/getRecipes');
             } 
             else {
                 res.render('login', {error: "Incorrect password, please try again!"})
@@ -204,10 +201,35 @@ app.post('/register', urlencoder, function (req, res){
     }
 });
 
+app.get('/recipe/:id', (req, res) => {
+    const link = req.params.id;
+    recipeModel.findOne({_id: link}, function(err, recipe){
+        res.render('recipe', {recipe});
+    })
+})
+
+app.get('/delete/:id', (req, res) => {
+    if( req.session.loggedIn == true ){
+        const link = req.params.id;
+        recipeModel.deleteOne({_id: link}, function (err){
+            if(err){
+                console.log(err);
+            } else {
+                console.log("Delete Succesful")
+                res.redirect('/getRecipes');
+            }
+        })   
+    }
+})
+
 app.get('/app', (req, res) => {
     // TODO : FETCH USER DATA, ADD TO SESSION, PASS TO APP
     if(req.session.loggedIn){
-        res.render('app', {user: req.session.userEmail, recipes, ingredients})
+        console.log("Inside /app: ")
+        console.log(recipes);
+        setTimeout(function(){
+            res.render('app', {user: req.session.userEmail, recipes})
+        }, 2000);
     } else {
         res.redirect('/')
     }
