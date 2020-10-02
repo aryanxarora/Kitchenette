@@ -34,6 +34,7 @@ const urlencoder = bodyparser.urlencoded({
 const mongoose = require('mongoose');
 const userModel = require('./models/user');
 const recipeModel = require('./models/recipe');
+const ingredientModel = require('./models/ingredients');
 const { raw } = require('body-parser');
 
 var recipes = []
