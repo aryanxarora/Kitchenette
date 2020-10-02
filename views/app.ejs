@@ -31,6 +31,23 @@
 
     <div class="app__main">
 
+        <div class="sidebar">
+            <ul>
+                <li>
+                    <div class="sidebar__listItem" onclick="recipes()">
+                        <img src="https://image.flaticon.com/icons/svg/1830/1830878.svg" alt="">
+                        <h1>recipes</h1>
+                    </div>
+                </li>
+                <li>
+                    <div class="sidebar__listItem" onclick="ingredients()">
+                        <img src="https://image.flaticon.com/icons/svg/2909/2909841.svg" alt="">
+                        <h1>ingredients</h1>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
         <div class="app__body">
 
             <!-- Modal -->
@@ -111,6 +128,28 @@
                                     </div>
                                 </a></li>
                             <% }) %> 
+                        <% } %> 
+                    </ul>
+                </div>
+            </div>
+
+            <div class="ingredients" id="ingredients">
+                <h1 class="offset">Ingredients</h1>
+                <div class="ingredients_div">
+                    <ul>
+                        <li><a href="#">
+                            <div class="ing__button">
+                                <h3>+</h3>
+                            </div>
+                        </a></li>
+                        <% if (ingredients.length > 0 ) { %> 
+                            <% ingredients.forEach(ingredient => { %>
+                                <li><a href="#">
+                                    <div class="ing__button">
+                                        <h3><%= ingredient.ing_name %></h3>
+                                    </div>
+                                </a></li>
+                            <% }) %>  
                         <% } %> 
                     </ul>
                 </div>
