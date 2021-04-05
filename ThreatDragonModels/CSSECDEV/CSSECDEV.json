@@ -1,0 +1,17 @@
+{
+  "summary": {
+    "title": "CSSECDEV",
+    "owner": "Arora and Cruz",
+    "description": "CP02"
+  },
+  "detail": {
+    "contributors": [],
+    "diagrams": [
+      {
+        "title": "CP02",
+        "thumbnail": "./public/content/images/thumbnail.jpg",
+        "id": 0
+      }
+    ]
+  }
+}
