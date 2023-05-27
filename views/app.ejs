@@ -21,7 +21,7 @@
         </div>
         <div class="account__details">
             <div class="dropdown">
-                <button onclick="dropdown()" class="dropbtn"><%= user %></button>
+                <button onclick="dropdown()" class="dropbtn"></button>
                 <div id="myDropdown" class="dropdown-content">
                     <a href="signOut">Log Out</a>
                 </div>
@@ -102,9 +102,7 @@
                                             <div class="recipe__card__bottom__content">
                                                 <h5><%= recipe.recipeName %> </h5>
                                                 <div class="spans">
-                                                    <% recipe.recipeTag.forEach(tag => { %> 
-                                                    <span><%= tag.toUpperCase() %> </span>
-                                                    <% }) %>
+                                                    <span><%= recipe.recipeTag %></span>
                                                 </div>
                                             </div>
                                         </div>
